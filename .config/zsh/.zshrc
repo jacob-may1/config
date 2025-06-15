@@ -28,7 +28,9 @@ bindkey -v
 
 # Aliases
 alias firefox="firefox & disown && exit"
+alias runescape="bolt & disown && exit"
 alias dotfiles="/usr/bin/git --git-dir=$HOME/.config/ --work-tree=$HOME"
+alias spotify="/sbin/spotify & disown && exit"
 
 # Custom Prompt
 autoload -Uz vcs_info
