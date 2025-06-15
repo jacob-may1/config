@@ -32,6 +32,15 @@ alias runescape="bolt & disown && exit"
 alias dotfiles="/usr/bin/git --git-dir=$HOME/.config/ --work-tree=$HOME"
 alias spotify="/sbin/spotify & disown && exit"
 
+
+# Start SSH agent
+if ! pgrep -u "$USER" ssh-agent > /dev/null; then
+    ssh-agent -t 1h > "$XDG_RUNTIME_DIR/ssh-agent.env"
+fi
+if [ ! -f "$SSH_AUTH_SOCK" ]; then
+    source "$XDG_RUNTIME_DIR/ssh-agent.env" >/dev/null
+fi
+
 # Custom Prompt
 autoload -Uz vcs_info
 precmd() { vcs_info }
@@ -40,3 +49,4 @@ zstyle ':vcs_info:git:*' formats '%b '
 
 setopt PROMPT_SUBST
 PROMPT='%F{green}%*%f %F{blue}%~%f %F{red}${vcs_info_msg_0_}%f$ '
+
